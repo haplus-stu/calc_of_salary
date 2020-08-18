@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta id="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/style.css">
+	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <title>給料計算サイト</title>
+</head>
+<body>
+   <div class="st_wrapper">
+   <div class="nav_container">
+       <nav>
+           <ul class="l_nav">
+               <li class="nav_item">
+			   	<a class="preset"href="javascript:void(0);" onclick="toggle_preset()">プリセット</a>
+			   </li>
+           </ul>
+       </nav>
+   </div>
+   <div class="disp_area">
+   <div class="for_calc_info">
+       <label>　　時給<input type="number" min='1' id="wage_per_hour"class='input_info'></label>
+       <label>勤務時間<input type="number" min='1' id="work_time"class='input_info'step="0.01"></label>
+       <label>シフト数<input type="number" min='1' id="shift_of_month"class='input_info'></label>
+       <input type="button" id='exec-calc'value="計算" onclick="calc()" class='button'>
+       <input type="button" id='clear-value'value="クリア" onclick="clear_all()" class='button'>
+   </div> 
+   <div class="calc_result">
+       <div class="result_item">
+            <label>日給<input type="text" id="daily_wage" readonly class='result_info'></label>
+            <input type="button" value="&#xf0c5;"  onclick="copy_to_clipboard(0)" class='fas copy'>
+       </div>
+       <div class="result_item">
+            <label>月給<input type="text" id="monthly_wage" readonly class='result_info'></label>
+            <input type="button" value="&#xf0c5;"  onclick="copy_to_clipboard(1)" class='fas copy'>
+       </div>
+   </div>
+   </div>
+   <div class="memo_area">
+	   <input id="toggle" type="checkbox" name="" > メモ欄を表示する
+	   <textarea id="memo"  cols=80" rows="15"></textarea>
+   </div>
+   <div id="modal">
+	<div id="preset_container">
+		<input type="button" value="&#xf00d;" id='exit_modal'class='modal_btn fas' onclick="toggle_preset()">
+		<h3 class="p_content" id='create-preset-msg'>プリセット作成</h3>
+		<input class="use_now_value" type="button" value="現在の値を使う" onclick="set_now_value()">
+		<h3 class="p_content">プリセット利用</h3>
+		<select id="preset_selector"   name=""></select>
+		<input type="button" id='use'value="&#xf35a;" class="modal_btn" title="利用する"  onclick="use_preset()">
+		<input type="button" id='remove'value="&#xf1f8;" class="modal_btn" title="削除" onclick="remove_preset()">
+	</div>
+   </div>
+   <script src="src/index.js"></script>
+   </div>
+</body>
+</html>
